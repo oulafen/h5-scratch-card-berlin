@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <!-- 设置苹果工具栏颜色 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+    <meta name="format-detection" content="telephone=no,email=no">
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <title>柠檬跑步</title>
+    <link href="./src/css/h5_170703_berlin.css" rel="stylesheet"/>
+    <style>
+        body {
+            background-color: #1e1f23;
+        }
+
+        .loading {
+            display: block;
+        }
+    </style>
+    <script>
+        var _czc = _czc || [];
+        _czc.push(["_setAccount", "1261353592"]);
+
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+                resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                recalc = function () {
+                    var clientWidth = docEl.clientWidth;
+                    if (!clientWidth) return;
+                    var fontSize = 20 * (clientWidth / 375);
+                    docEl.style.fontSize = fontSize > 30 ? '30px' : fontSize + 'px';
+                };
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);
+    </script>
+</head>
+<body>
+<!--content-->
+<div class="container">
+    <!--进行中-->
+    <a href="rule.html" class="rule-btn-box">
+        <span class="animated pulse"></span>
+    </a>
+    <div class="count-down-box" data-target_date="1500825600000">
+        <!--结束时间 2017-07-24 00:00 -->
+        <p>距离活动结束还剩</p>
+        <p><span id="countdownDay">--</span>天<span id="countdownHour">--</span>时<span id="countdownMin">--</span>分<span
+                id="countdownSecond">--</span>秒</p>
+    </div>
+    <!--已报名-->
+    <img src="./src/images/kv-1.jpg" alt="">
+    <div class="scratch-wrap">
+        <div class="my-info">
+            <div class="avatar-box">
+                <img src="./src/images/avatar.jpg" alt="">
+            </div>
+            <div class="times-box">
+                <p class="name" v-cloak>{{ userInfo.username }}</p>
+                <p>我的抽奖次数：<span id="times" v-cloak>{{ userInfo.chances }}</span>次</p>
+            </div>
+        </div>
+        <!--刮刮卡-->
+        <div class="scratch-card-box" id="scratchCard">
+            <img src="./src/images/scratch-bg.jpg" alt="" id="scratchBg" style="display: none;">
+            <div class="info" id="prize" data-key="1" data-disable="false">
+                <div class="prize line-2 prize-0" data-target="0">
+                    <!--机会已用完-->
+                    <p>抱歉，您还没有抽奖机会</p>
+                    <p>跑完5KM再来抽奖吧</p>
+                </div>
+                <div class="prize line-2 prize-1" data-target="1">
+                    <!--奖1-->
+                    <p>恭喜您获得一个柏马名额</p>
+                    <p>请到“<a class="link" href="javascript:;" v-bind:class="{active: btnActive == 1}"
+                             @click="goMyPrize()">我的奖品</a><span></span>”中进行查看</p>
+                </div>
+                <div class="prize line-2 prize-2" data-target="2">
+                    <!--奖2-->
+                    <p>恭喜您获得一个全年李宁跑步装备名额</p>
+                    <p>请到“<a class="link" href="javascript:;" v-bind:class="{active: btnActive == 1}"
+                             @click="goMyPrize()">我的奖品</a><span></span>”中进行查看</p>
+                </div>
+                <div class="prize line-btn prize-3" data-target="3">
+                    <!--奖3-->
+                    <p>恭喜您获得幸运奖</p>
+                    <a href="javascript:;" class="btn" v-bind:class="{active: btnActive == 1}"
+                       @click="goReceiveCoupon()"><span>去领取</span></a>
+                </div>
+                <div class="prize line-btn prize-4-1" data-target="4_1">
+                    <!--奖4.1-->
+                    <p>喔唷，竟然没中，还要继续努力哦</p>
+                    <a href="javascript:;" class="btn" v-bind:class="{active: btnActive == 1}"
+                       @click="scratchAgain()"><span>再来一次</span></a>
+                </div>
+                <div class="prize line-1 prize-4-2" data-target="4_2">
+                    <!--奖4.2-->
+                    <p>喔唷，竟然没中，还要继续努力哦</p>
+                </div>
+                <div class="prize line-btn prize-5" data-target="5">
+                    <p>您还没有验证跑鞋，暂无抽奖机会</p>
+                    <a href="javascript:;" class="btn" v-bind:class="{active: btnActive == 1}" @click="goSignSuccess()"><span>去验证</span></a>
+                </div>
+                <div class="prize line-1 prize-6" data-target="6">
+                    <p>喔唷，活动已结束，下次早点来哦</p>
+                </div>
+            </div>
+            <canvas id="canvas" class="canvas" data-color="#49400e"></canvas>
+        </div>
+    </div>
+    <div class="winner-box" style="margin: 0.5rem 0 0.8rem;">
+        <div class="label">获奖名单</div>
+        <div class="winner-lists">
+            <p class="lists" id="winnerLists" v-cloak>
+                {{winnerStr}}
+            </p>
+        </div>
+    </div>
+    <a href="javascript:;" data-action="goMyPrize" class="my-prize-btn"></a>
+</div>
+<div class="warning"></div>
+<div class="loading"></div>
+<script src="./src/js/plugin/jquery-2.1.3.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/vue/2.1.3/vue.min.js"></script>
+<script src="./src/js/global.js"></script>
+<script src="./src/js/base.js"></script>
+<script src="./src/js/h5_170703_berlin.js"></script>
+<script>
+    $('.count-down-box')[0] && page.initCountDown(function () {
+//            location.reload();
+    });
+    $('.loading').hide();
+    var indexVue = new Vue({
+        el: '.container',
+        data: {
+            userStatus: -1, //0=>未报名; 1=>已报名, 未验证鞋; 2=>已报名, 可以获得抽奖机会
+            userInfo: {
+                avatar: './src/images/avatar.jpg',
+                username: 'oulafen',
+                chances: 3,
+                is_win: 0,
+                rank: 4,
+                is_got_today: 0
+            },
+            getPrize: -1,
+            btnActive: 0,
+            winnerStr: '二等奖:正经老司机；幸运奖:麦田守望者；幸运奖:水清云淡；幸运奖:平凡如我；',
+            alreadyHasPrize: 0 //0=>未中奖, 1=>已中奖
+        },
+        methods: {
+            goSign: function () {
+                if ($('.sign-btn').hasClass('end')) {
+                    var is_lemon = global.browser().lemon;
+                    is_lemon ? page.warn('活动已结束') : location.href = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.lemon.running';
+                    return;
+                }
+                $('.loading').show();
+                operation.goSign();
+            },
+            goSignSuccess: function () {
+                operation.goSignSuccess();
+            },
+            scratchAgain: function () {
+                operation.scratchAgain();
+            },
+            goReceiveCoupon: function () {
+                operation.goReceiveCoupon();
+            },
+            goMyPrize: function () {
+                operation.goMyPrize();
+            }
+        }
+    });
+</script>
+</body>

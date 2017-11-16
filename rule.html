@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <!-- 设置苹果工具栏颜色 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+    <meta name="format-detection" content="telephone=no,email=no">
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <title>柠檬跑步</title>
+    <link href="src/css/h5_170703_berlin.css" rel="stylesheet"/>
+    <style>
+        body{
+            background-color: #1e1f23;
+        }
+        .loading{
+            display: block;
+        }
+    </style>
+    <script>
+        var _czc = _czc || [];
+        _czc.push(["_setAccount", "1261353592"]);
+
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth;
+                        if (!clientWidth) return;
+                        var fontSize = 20 * (clientWidth / 375);
+                        docEl.style.fontSize = fontSize > 30 ? '30px' : fontSize + 'px';
+                    };
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);
+    </script>
+</head>
+<body>
+<!--content-->
+<div class="container" style="padding: 0">
+    <!--活动规则-->
+    <div class="rules-box J-rules-box" style="display: block">
+        <ul class="nav-box flex-box J-nav-box">
+            <li class="nav flex J-nav current" data-target="rule-1"><span>活动说明</span></li>
+            <li class="nav flex J-nav" data-target="rule-2"><span>活动注释</span></li>
+        </ul>
+        <ul class="nav-content J-nav-target-box">
+            <li class="station_item current" data-id="rule-1">
+                <img src="src/images/rule-01.jpg" alt="">
+            </li>
+            <li class="station_item" data-id="rule-2">
+                <img src="src/images/rule-02-1.jpg" alt="">
+                <img src="src/images/rule-02-2.jpg" alt="">
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="warning"></div>
+<div class="loading"></div>
+<script src="src/js/plugin/jquery-2.1.3.min.js"></script>
+<script src="src/js/base.js"></script>
+<script src="src/js/h5_170703_berlin.js"></script>
+<script>
+    $(function(){
+        tabNav.init();
+    })
+</script>
+</body>

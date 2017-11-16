@@ -1,0 +1,998 @@
+﻿* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'MicrosoftYaHei'
+}
+
+a {
+    outline: none;
+    text-decoration: none
+}
+
+li {
+    list-style: none
+}
+
+img {
+    outline-width: 0;
+    vertical-align: bottom
+}
+
+html {
+    font-size: 20px;
+    -webkit-tap-highlight-color: transparent
+}
+
+.clearfix :after {
+    display: block;
+    content: '';
+    clear: both
+}
+
+.flex-box {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex
+}
+
+.flex-box .flex {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    display: inline-block
+}
+
+.flex-box .flex-2 {
+    -webkit-box-flex: 2;
+    -webkit-flex: 2;
+    -ms-flex: 2;
+    flex: 2;
+    display: inline-block
+}
+
+.flex-box .flex-3 {
+    -webkit-box-flex: 3;
+    -webkit-flex: 3;
+    -ms-flex: 3;
+    flex: 3;
+    display: inline-block
+}
+
+.warn-tip {
+    font-size: 12px;
+    color: #f2001e;
+    line-height: 40px;
+    padding: 0 40px;
+    background-color: #fff7e2
+}
+
+.warning {
+    display: none;
+    position: fixed;
+    bottom: 45%;
+    left: 50%;
+    max-width: 50%;
+    padding: 10px 15px;
+    background: #000;
+    border-radius: 5px;
+    text-align: center;
+    color: #ffffff;
+    font-size: 14px;
+    -webkit-transform: translate3d(-50%, 60%, 0);
+    -ms-transform: translate3d(-50%, 60%, 0);
+    -moz-transform: translate3d(-50%, 60%, 0);
+    -o-transform: translate3d(-50%, 60%, 0);
+    transform: translate3d(-50%, 60%, 0);
+    z-index: 99
+}
+
+.animated {
+    -webkit-animation-duration: 0.5s;
+    animation-duration: 0.5s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both
+}
+
+@-webkit-keyframes slideInUpWarning {
+    from {
+        -webkit-transform: translate3d(-50%, 100%, 0);
+        -ms-transform: translate3d(-50%, 100%, 0);
+        -moz-transform: translate3d(-50%, 100%, 0);
+        -o-transform: translate3d(-50%, 100%, 0);
+        transform: translate3d(-50%, 100%, 0);
+        visibility: visible
+    }
+    to {
+        -webkit-transform: translate3d(-50%, 60%, 0);
+        -ms-transform: translate3d(-50%, 60%, 0);
+        -moz-transform: translate3d(-50%, 60%, 0);
+        -o-transform: translate3d(-50%, 60%, 0);
+        transform: translate3d(-50%, 60%, 0)
+    }
+}
+
+@keyframes slideInUpWarning {
+    from {
+        -webkit-transform: translate3d(-50%, 100%, 0);
+        -ms-transform: translate3d(-50%, 100%, 0);
+        -moz-transform: translate3d(-50%, 100%, 0);
+        -o-transform: translate3d(-50%, 100%, 0);
+        transform: translate3d(-50%, 100%, 0);
+        visibility: visible
+    }
+    to {
+        -webkit-transform: translate3d(-50%, 60%, 0);
+        -ms-transform: translate3d(-50%, 60%, 0);
+        -moz-transform: translate3d(-50%, 60%, 0);
+        -o-transform: translate3d(-50%, 60%, 0);
+        transform: translate3d(-50%, 60%, 0)
+    }
+}
+
+.slideInUpWarning {
+    -webkit-animation-name: slideInUpWarning;
+    animation-name: slideInUpWarning
+}
+
+@-webkit-keyframes fadeOut {
+    from {
+        opacity: 1
+    }
+    to {
+        opacity: 0
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1
+    }
+    to {
+        opacity: 0
+    }
+}
+
+.fadeOut {
+    -webkit-animation-name: fadeOut;
+    animation-name: fadeOut
+}
+
+.loading {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background-image: url("../images/loading_lemon.gif");
+    background-size: 4rem;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: rgba(0, 0, 0, 0.5)
+}
+
+.main {
+    width: 100%
+}
+
+.main .container {
+    width: 1200px;
+    margin: 0 auto
+}
+
+.clear {
+    clear: both
+}
+
+.bg-filter {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    display: none
+}
+
+.drop-menu {
+    width: 80%;
+    height: auto;
+    position: fixed;
+    background: #fff;
+    left: 50%;
+    top: 20%;
+    margin-left: -40%;
+    padding: 0 0 0.5rem 0;
+    z-index: 99;
+    border-radius: 0.6rem;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    -webkit-transform-origin: center center;
+    -moz-transform-origin: center center;
+    -ms-transform-origin: center center;
+    -o-transform-origin: center center;
+    transform-origin: center center;
+    -webkit-transition: none;
+    transition: none;
+    -webkit-transform: scale3d(0);
+    -ms-transform: scale3d(0);
+    -moz-transform: scale3d(0);
+    -o-transform: scale3d(0);
+    transform: scale3d(0);
+    visibility: hidden
+}
+
+.drop-menu.drop-menu-show {
+    visibility: visible;
+    opacity: 1;
+    -webkit-transform: scale3d(1);
+    -ms-transform: scale3d(1);
+    -moz-transform: scale3d(1);
+    -o-transform: scale3d(1);
+    transform: scale3d(1);
+    z-index: 999;
+    -webkit-transition: all 0.3s cubic-bezier(0.31, 0.57, 0.68, 1.36);
+    transition: all 0.3s cubic-bezier(0.31, 0.57, 0.68, 1.36)
+}
+
+.filter {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 100;
+    display: none
+}
+
+[v-cloak] {
+    display: none
+}
+
+[title="站长统计"] {
+    display: none
+}
+
+.adver-pc {
+    width: 164px;
+    height: 127px;
+    position: fixed;
+    right: 8px;
+    bottom: 40px
+}
+
+.adver-pc .close-btn {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 0;
+    top: 0
+}
+
+/*.tel-box {*/
+    /*width: 129px;*/
+    /*height: 59px;*/
+    /*background: url("../images/tel.png") no-repeat center center;*/
+    /*background-size: cover;*/
+    /*position: fixed;*/
+    /*top: 80%;*/
+    /*right: 0px;*/
+    /*z-index: 3*/
+/*}*/
+
+@media screen and (min-width: 700px) {
+    .tel-box {
+        display: none
+    }
+}
+
+* {
+    font-family: -apple-system-font, "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif
+}
+
+img {
+    width: 100%;
+    vertical-align: bottom
+}
+
+.container {
+    max-width: 700px;
+    width: 100%;
+    margin: 0 auto;
+    background-color: #1e1f23;
+    background-image: url(../images/bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    color: #fff;
+    padding: 1.5rem 0 1px
+}
+
+.container .rule-btn-box {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 5.15rem;
+    height: 5.15rem;
+    background: url(../images/rule-bg.png) center no-repeat;
+    background-size: contain;
+    text-align: center
+}
+
+.container .rule-btn-box span {
+    display: inline-block;
+    background: url(../images/rule-font.png) center no-repeat;
+    background-size: contain;
+    width: 3rem;
+    height: 3rem;
+    margin: 0.3rem 0 0 1.8rem;
+    animation-delay: 1s;
+    -webkit-animation-delay: 1s;
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite
+}
+
+.container .rules-box {
+    width: 100%;
+    color: #fff;
+    padding-top: 2.5rem
+}
+
+.container .rules-box .nav-box {
+    height: calc(2.5rem + 2px);
+    line-height: 2.5rem;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 200;
+    color: #ddd;
+    border-bottom: 1px solid #aaa;
+    position: fixed;
+    width: 100%;
+    max-width: 700px;
+    top: 0;
+    background-color: #1e1f23;
+    overflow: hidden
+}
+
+.container .rules-box .nav-box li.current {
+    color: #fff
+}
+
+.container .rules-box .nav-box li.current span {
+    display: inline-block;
+    padding: 0 0.5rem;
+    border-bottom: 2px solid #fff
+}
+
+.container .rules-box .nav-box li.current span:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-width: 0.4rem 0.3rem;
+    border-style: solid;
+    border-color: #fff transparent transparent transparent;
+    -webkit-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg);
+    -moz-transform: rotate(-180deg);
+    -o-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+    margin: 1.8rem 0 0 calc(-0.3rem - 2em)
+}
+
+.container .rules-box .nav-content {
+    text-align: center
+}
+
+.container .rules-box .nav-content li {
+    display: none
+}
+
+.container .rules-box .nav-content li.current {
+    display: block
+}
+
+.container .count-down-box {
+    line-height: 1.7rem;
+    font-size: 1.2rem;
+    font-weight: bolder;
+    text-align: center
+}
+
+.container .winner-box {
+    margin: 2rem 0;
+    padding: 0 1.375rem;
+    border-radius: 5px;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    text-align: center;
+    color: #1b1c1f;
+    font-size: 0.6rem;
+    overflow: hidden;
+    width: 100%
+}
+
+.container .winner-box .label {
+    font-weight: bolder;
+    background-color: #FFC807;
+    box-shadow: 0 0 0.3rem 0 #1e1f23;
+    width: 7em;
+    height: 1.5rem;
+    position: absolute;
+    border-radius: 5px 0 0 5px
+}
+
+.container .winner-box .winner-lists {
+    width: calc(100% - 7em - 2.5rem);
+    max-width: calc(700px - 7em - 2.5rem);
+    margin-left: 7em;
+    background-color: #fff;
+    overflow: hidden;
+    border-radius: 0 5px 5px 0;
+    height: 1.5rem;
+    position: absolute
+}
+
+.container .winner-box .winner-lists p {
+    position: absolute;
+    white-space: nowrap;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    font-size: 0.6rem;
+    margin-left: 100%
+}
+
+.container .sign-btn {
+    display: block;
+    margin: auto;
+    background: url(../images/sign-btn.png) center no-repeat;
+    width: 12.85rem;
+    height: 3.85rem;
+    background-size: contain;
+    margin-bottom: 1rem
+}
+
+.container .sign-btn.end {
+    opacity: .4
+}
+
+.container .my-prize-btn {
+    display: block;
+    margin: auto;
+    background: url(../images/my-prize-btn.png) center no-repeat;
+    width: 8.8rem;
+    height: 3.35rem;
+    background-size: contain;
+    margin-bottom: 0.5rem
+}
+
+.container .scratch-wrap {
+    margin: auto;
+    width: 17.35rem;
+    height: 14.6rem;
+    background: url(../images/scratch-box-bg.png) no-repeat center center;
+    background-size: 100%;
+    padding: 2rem 2.3rem 1.9rem
+}
+
+.container .scratch-wrap .my-info {
+    height: 4.25rem;
+    margin-bottom: 2rem;
+    padding: 0.6rem 0 0 0;
+    color: #1e1f23;
+    font-size: 0.8rem
+}
+
+.container .scratch-wrap .my-info .avatar-box {
+    width: 3rem;
+    height: 3rem;
+    float: left;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 1rem 0 0.5rem;
+    background: url(../images/avatar-default.png) center no-repeat;
+    background-size: contain
+}
+
+.container .scratch-wrap .my-info .avatar-box img {
+    border-radius: 50%
+}
+
+.container .scratch-wrap .my-info .times-box {
+    float: left;
+    line-height: 1.6;
+    margin: 0.4rem 0 0 0;
+    font-weight: bold;
+    max-width: calc(100% - 4.5rem)
+}
+
+.container .scratch-wrap .my-info .times-box .name {
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.container .scratch-wrap .my-info .times-box span {
+    color: #ff9800;
+    font-size: 0.9rem
+}
+
+.container .scratch-wrap .scratch-card-box {
+    position: relative;
+    width: 12.5rem;
+    height: 4rem;
+    margin: 0 auto;
+    background-color: #eceff1;
+    background-size: 100% 100%;
+    max-width: 500px
+}
+
+.container .scratch-wrap .scratch-card-box .canvas {
+    position: absolute;
+    text-align: center;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4rem
+}
+
+.container .scratch-wrap .scratch-card-box .info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4rem;
+    text-align: center;
+    background-color: #eee
+}
+
+.container .scratch-wrap .scratch-card-box .prize {
+    display: none;
+    font-size: 0.7rem;
+    color: #1e1f23;
+    text-align: center;
+    line-height: 1.6
+}
+
+.container .scratch-wrap .scratch-card-box .prize.current {
+    display: block
+}
+
+.container .scratch-wrap .scratch-card-box .prize.line-1 {
+    line-height: 4rem
+}
+
+.container .scratch-wrap .scratch-card-box .prize.line-2 {
+    padding: 0.9rem 0
+}
+
+.container .scratch-wrap .scratch-card-box .prize.line-3 {
+    padding: 0.35rem 0
+}
+
+.container .scratch-wrap .scratch-card-box .prize.line-btn {
+    padding: 0.6rem 0
+}
+
+.container .scratch-wrap .scratch-card-box .prize .link {
+    color: #ffc807
+}
+
+.container .scratch-wrap .scratch-card-box .prize .link.active {
+    z-index: 3;
+    position: absolute
+}
+
+.container .scratch-wrap .scratch-card-box .prize .link.active + span {
+    display: inline-block;
+    width: 4em
+}
+
+.container .scratch-wrap .scratch-card-box .prize .btn {
+    line-height: 1.3rem;
+    padding: 0 1.3rem;
+    display: inline-block;
+    margin: 0.3rem auto 0;
+    background-color: #ffc807;
+    color: #fff;
+    border-radius: 5px
+}
+
+.container .scratch-wrap .scratch-card-box .prize .btn.active {
+    z-index: 3;
+    position: absolute;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%)
+}
+
+.my-prize-container {
+    background: #fff
+}
+
+.my-prize-container .prize-box .prize-cup {
+    width: 3.1rem;
+    height: 3.1rem;
+    line-height: 2.2rem;
+    background: url(../images/prize-cup-bg.jpg) center no-repeat;
+    background-size: contain;
+    text-align: center;
+    color: #fff;
+    font-size: 1.15rem;
+    margin: auto
+}
+
+.my-prize-container .prize-box .desc {
+    font-size: 1.15rem;
+    color: #333;
+    text-align: center;
+    margin: 1.2rem 0 0.2rem;
+    font-weight: bold
+}
+
+.my-prize-container .bottom-box {
+    position: absolute;
+    width: 100%;
+    bottom: 1rem
+}
+
+.my-prize-container .bottom-box.relative {
+    position: relative;
+    margin: 3rem 0 0
+}
+
+.my-prize-container .more-desc {
+    color: #999;
+    text-align: center;
+    font-size: 0.75rem;
+    line-height: 1.2rem
+}
+
+.default-btn {
+    height: 2.5rem;
+    text-align: center;
+    line-height: 2.5rem;
+    background: #ffc807;
+    color: #fff;
+    display: block;
+    border-radius: 1.25rem;
+    margin: 2rem 0;
+    font-size: 0.9rem
+}
+
+input {
+    outline: none;
+    border: none;
+    width: 100%;
+    background: none
+}
+
+.select-box {
+    background-image: url(../images/gray-arrow-down.png);
+    background-position: right center;
+    background-size: 0.75rem;
+    background-repeat: no-repeat
+}
+
+.warp {
+    max-width: 700px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1.5rem 1.25rem 0;
+    color: #333;
+    background: #fff
+}
+
+.warp .sing-container h3 {
+    font-size: 1.15rem;
+    height: 3rem;
+    line-height: 3rem
+}
+
+.warp .sing-container .form-group {
+    border-bottom: 1px solid #c5c5c5;
+    height: 3.725rem;
+    line-height: 3.725rem;
+    display: flex;
+    display: -webkit-flex;
+    font-size: 0.75rem
+}
+
+.warp .sing-container .form-group .form-label {
+    color: #999;
+    flex: 1;
+    -webkit-flex: 1
+}
+
+.warp .sing-container .form-group .form-text {
+    flex: 3;
+    -webkit-flex: 3
+}
+
+.warp .sing-container .form-group .form-text input {
+    font-size: 0.75rem
+}
+
+.warp .sing-sucess .sing-sucess-btn {
+    width: 2.85rem;
+    height: 2.05rem;
+    background: url(../images/sing-sucess.png) no-repeat center center;
+    background-size: cover;
+    margin: 2rem auto 0
+}
+
+.warp .sing-sucess p {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #333
+}
+
+.warp .sing-sucess .tip {
+    margin: 2.2rem 0;
+    font-size: 1.15rem
+}
+
+.warp .sing-sucess .code-tip {
+    margin: 1.75rem 0 1rem 0
+}
+
+.warp .sing-sucess .form-group {
+    height: 3.7rem;
+    line-height: 3.7rem;
+    border-bottom: 1px solid #c5c5c5;
+    text-align: center
+}
+
+.warp .sing-sucess .form-group input {
+    line-height: 100%;
+    color: #333;
+    font-size: 0.9rem;
+    text-align: center
+}
+
+.warp .sing-sucess .code-text {
+    font-size: 0.75rem;
+    color: #999;
+    text-align: center;
+    margin: 0.75rem 0 2rem
+}
+
+.coupon-container {
+    background: #fff;
+    max-width: 700px;
+    width: 100%;
+    margin: 0 auto;
+    color: #fff;
+    padding: 1rem 0 1px
+}
+
+.coupon-container img {
+    max-width: 100%;
+    vertical-align: top
+}
+
+.coupon-container a {
+    display: block
+}
+
+.coupon-container .coupon-box {
+    padding: 0 1rem 1.5rem
+}
+
+.coupon-container .coupon-box .quan-desc {
+    font-size: 0.75rem;
+    color: #999
+}
+
+.coupon-container .coupon-box .quan-desc p {
+    line-height: 0.9rem
+}
+
+.coupon-container .coupon-box .quan-desc p:nth-child(2) {
+    margin: 0.35rem 0 0 0
+}
+
+.coupon-container .coupon-box .store-address-box .title {
+    font-size: 0.9rem;
+    color: #ff9800;
+    margin: 1rem 0 0 0
+}
+
+.coupon-container .coupon-box .store-address-box .search-box {
+    height: 3.7rem;
+    line-height: 3.7rem;
+    border-bottom: 1px solid #c5c5c5
+}
+
+.coupon-container .coupon-box .search-result p {
+    font-size: 0.75rem;
+    color: #999
+}
+
+.coupon-container .coupon-box .search-result p span {
+    color: #ff9800
+}
+
+.coupon-container .coupon-box .store-list li {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #c5c5c5
+}
+
+.coupon-container .coupon-box .store-list li:last-child {
+    border: none
+}
+
+.coupon-container .coupon-box .store-list p {
+    font-size: 0.75rem;
+    color: #999999
+}
+
+.coupon-container .coupon-box .store-list .store-list-title {
+    font-size: 0.9rem;
+    color: #ff9800;
+    margin: 0 0 0.7rem 0
+}
+
+.boxy {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.6)
+}
+
+.boxy .boxy-contian {
+    width: 13.5rem;
+    background: #fff;
+    border-radius: 0.2rem;
+    position: absolute;
+    left: 50%;
+    margin-left: -6.75rem;
+    top: 30%
+}
+
+.boxy .boxy-contian .boxy-contian-title {
+    padding: 1.2rem 0 3.7rem 0
+}
+
+.boxy .boxy-contian .boxy-contian-title p {
+    color: #4a4a4a;
+    text-align: center;
+    font-size: 0.65rem
+}
+
+.boxy .boxy-contian .boxy-contian-title p:nth-child(1) {
+    font-size: 0.85rem
+}
+
+.boxy .boxy-contian .boxy-contian-title p:nth-child(2) {
+    font-size: 0.65rem;
+    line-height: 1rem;
+    margin: 0.3rem 0 0 0
+}
+
+.boxy .boxy-contian .boxy-btn {
+    height: 2.5rem;
+    border-top: 0.025rem solid #ebebeb;
+    line-height: 2.5rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden
+}
+
+.boxy .boxy-contian .boxy-btn a {
+    width: 50%;
+    float: left;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #ff0000
+}
+
+.boxy .boxy-contian .boxy-btn a:nth-child(2) {
+    color: #5f8ce9;
+    border-left: 0.025rem solid #ebebeb
+}
+
+.boxy .boxy-contian .boxy-btn .no-buy {
+    color: #999
+}
+
+.hidden {
+    display: none
+}
+
+.hidden.current {
+    display: block
+}
+
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both
+}
+
+@-webkit-keyframes pulse {
+    from {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1)
+    }
+    50% {
+        -webkit-transform: scale3d(1.1, 1.1, 1.1);
+        transform: scale3d(1.1, 1.1, 1.1)
+    }
+    to {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1)
+    }
+}
+
+@keyframes pulse {
+    from {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1)
+    }
+    50% {
+        -webkit-transform: scale3d(1.1, 1.1, 1.1);
+        transform: scale3d(1.1, 1.1, 1.1)
+    }
+    to {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1)
+    }
+}
+
+.pulse {
+    -webkit-animation-name: pulse;
+    animation-name: pulse
+}
+
+@media screen and (min-width: 320px) {
+    html {
+        font-size: 17px
+    }
+}
+
+@media screen and (min-width: 375px) {
+    html {
+        font-size: 20px
+    }
+}
+
+@media screen and (min-width: 414px) {
+    html {
+        font-size: 22px
+    }
+}
+
+@media screen and (min-width: 560px) {
+    html {
+        font-size: 30px
+    }
+}
+
+@media screen and (min-width: 700px) {
+    .rule-btn-box {
+        left: 50%;
+        margin-left: 350px;
+        -webkit-transform: translateX(-100%);
+        -ms-transform: translateX(-100%);
+        -moz-transform: translateX(-100%);
+        -o-transform: translateX(-100%);
+        transform: translateX(-100%)
+    }
+}
